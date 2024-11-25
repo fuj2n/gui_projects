@@ -1,0 +1,109 @@
+from tkinter import *
+
+operations = ["addition", "subtraction", "multiplication", "division"]
+
+def main_window():
+    root = Tk()
+    root.geometry("1200x600")
+    root.resizable(False, False)
+    root.title("JackTheFaker")
+    root.configure(bg="#85939e")
+
+    label1 = Label(root, text="What kind of operation would you like to perform?", bg="#85939e", font=("Times 12 bold", 20)).pack()
+
+    def open_calculator():
+        root.destroy()
+        calculator = Tk()
+        calculator.title("Calculator")
+        calculator.geometry("600x600")
+        calculator.resizable(False, False)
+        calculator.configure(bg="#242a30")
+        
+        def read_input1():
+            global value1
+            value1 = entry.get()
+            value1 = int(value1)
+            entry.delete(0, END)
+            button3.configure(text=value1)
+
+        def read_input2():
+            global value2
+            value2 = entry.get()
+            value2 = int(value2)
+            entry.delete(0, END)
+            button4.configure(text=value2)
+
+        def ask_for_operation():
+            global operation
+            operation = entry.get()
+            if operation.lower() in operations:
+                button5.configure(text=str(operation))
+
+        def perform_operation():
+            if operation == "addition":
+                result = value1 + value2
+                label2.configure(text=result)
+            elif operation == "subtraction":
+                result = value1 - value2
+                label2.configure(text=result)
+            elif operation == "division":
+                result = value1 / value2
+                label2.configure(text=result)
+            elif operation == "multiplication":
+                result = value1 * value2
+                label2.configure(text=result)
+            else:
+                label2.configure(text="Error")
+
+        def go_back():
+            calculator.destroy()
+            main_window()
+
+        button2 = Button(calculator, text="Go Back", bg="#1d2227", command=go_back, font=("Arial", 18)).place(x=480, y=4)
+        button3 = Button(calculator, text="1st Number", bg="#1d2227", command=read_input1, pady=5, padx=40, font=("Arial", 15))
+        button3.place(x=20, y=125)
+
+        button4 = Button(calculator, text="2nd Number", bg="#1d2227", command=read_input2, pady=5, padx=40, font=("Arial", 15))
+        button4.place(x=180, y=125)
+
+        button5 = Button(calculator, text="Operation", bg="#1d2227", command=ask_for_operation, pady=5, padx=40, font=("Arial", 15))
+        button5.place(x=340, y=125)
+
+        button6 = Button(calculator, text=">>>", bg="#1d2227", padx=5, pady=50, command=perform_operation, font=("Arial", 15))
+        button6.place(x=530, y=125)
+
+        entry = Entry(calculator, width=25, justify="center", font=("Arial", 25), bg="#1d2227")
+        entry.place(x=20, y=75)
+        entry.focus()
+
+        label1 = Label(calculator, text="Calculator", padx=35, pady=3, bg="#242a30", font=("Arial", 20))
+        label1.place(x=20, y=5)
+        label2 = Label(calculator, height=8, width=21, font=("Arial", 30), bg="#1d2227")
+        label2.place(x=20, y=180)
+
+        calculator.mainloop()
+
+    def open_weather():
+        root.destroy()
+        weather_page = Tk()
+        weather_page.title("Weather")
+        weather_page.geometry("1200x600")
+        weather_page.resizable(False, False)
+        weather_page.configure(bg="#410f15")
+
+        def go_back_to_main():
+            weather_page.destroy()
+            main_window()
+
+        button2 = Button(weather_page, text="Go Back", padx=20, pady=5, bg="#310b0f", command=go_back_to_main, font=("Arial", 20))
+        button2.place(x=1050, y=5)
+
+    button1 = Button(root, text="Calculator", font=("Arial", 12), padx=80, pady=20, command=open_calculator, bg="darkgrey").place(x=20, y=20)
+    button2 = Button(root, text="Weather", font=("Arial", 12), padx=80, pady=20, command=open_weather, bg="darkgrey").place(x=20, y=120)
+    button3 = Button(root, text="Empty", font=("Arial", 12), padx=80, pady=20, bg="darkgrey").place(x=20, y=220)
+    button4 = Button(root, text="Empty", font=("Arial", 12), padx=80, pady=20, bg="darkgrey").place(x=20, y=320)
+    button5 = Button(root, text="Empty", font=("Arial", 12), padx=80, pady=20, bg="darkgrey").place(x=20, y=420)
+
+    root.mainloop()
+
+main_window()
