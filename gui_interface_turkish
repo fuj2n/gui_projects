@@ -1,0 +1,172 @@
+#Uygulama_arayiz
+from tkinter import *
+
+islemler = ["toplama","çıkarma","çarpma","bölme"]
+def sekmezero():
+    ana = Tk()
+    ana.geometry("1200x600")
+    ana.resizable(False,False)
+    ana.title("JackTheFaker")
+    ana.configure(bg="#85939e")
+
+    yazi1 = Label(ana,text="Ne tarz bir işlem yapmak istersiniz?",bg="#85939e",font=("Times 12 bold",20)).pack()
+    
+    def sekmeac1():
+            ana.destroy()
+            hesapmakinesi = Tk()
+            hesapmakinesi.title("Hesap Makinesi")
+            hesapmakinesi.geometry("600x600")
+            hesapmakinesi.resizable(False,False)
+            hesapmakinesi.configure(bg="#242a30")            
+            
+            def oku1():
+                  global veri1
+                  veri1 = giris_entry.get()
+                  veri1 = int(veri1)
+                  giris_entry.delete(0,END)
+                  button3.configure(text=veri1)
+
+            def oku2():
+                  global veri2
+                  veri2 = giris_entry.get()
+                  veri2 = int(veri2)
+                  giris_entry.delete(0,END)
+                  button4.configure(text=veri2)
+
+            def islemsor():
+                 global veri3
+                 veri3 = giris_entry.get()
+                 if veri3.lower() in islemler:
+                      button5.configure(text=str(veri3))
+
+            def islemsec():
+                 if veri3 == "toplama":
+                      veri4 = veri1 + veri2
+                      text2.configure(text=veri4)
+                                                                 
+                 elif veri3 == "çıkarma":
+                      veri4 = veri1 - veri2
+                      text2.configure(text=veri4)
+                      
+                      
+                 elif veri3 == "bölme":
+                      veri4 = veri1 / veri2
+                      text2.configure(text=veri4)
+                      
+                      
+                 elif veri3 == "çarpma":
+                      veri4 = veri1 * veri2
+                      text2.configure(text=veri4)
+                 else:
+                      text2.configure(text2="hata")   
+
+                    
+                      
+
+            
+            def gerigit():
+                  hesapmakinesi.destroy()
+                  sekmezero()
+
+
+
+            button2 = Button(hesapmakinesi,
+                        text="Geri Dön",
+                        bg="#1d2227",
+                        command=gerigit,
+                        font=("Arial",18)).place(x=480,y=4)
+            
+            button3 = Button(hesapmakinesi,text="1 NO",bg="#1d2227",
+                             command=oku1,
+                             pady= 5,padx=40,font=("Arial",15))
+            button3.place(x=20,y=125)
+            
+            button4 = Button(hesapmakinesi,text="2 NO",bg="#1d2227",
+                             command=oku2,pady=5,
+                             padx=40,font=("Arial",15))
+            button4.place(x=180,y=125)
+            
+            button5 = Button(hesapmakinesi,text="islem",bg="#1d2227",
+                             command=islemsor,pady=5,
+                             padx=40,font=("Arial",15))
+            button5.place(x=340,y=125)
+
+            button6 = Button(hesapmakinesi,text=">>>",bg="#1d2227",padx=5,pady=50,
+                              command=islemsec,
+                              font=("Arial",15))
+            button6.place(x=530,y=125)
+
+            giris_entry = Entry(hesapmakinesi,width=25,justify="center",
+                          font=("Arial",25),
+                          bg="#1d2227")
+            giris_entry.place(x=20,y=75)
+            giris_entry.focus()
+
+            text1 = Label(hesapmakinesi,text="Hesap Makinesi",padx=35,pady=3,
+                          bg="#242a30",font=("Arial",20))
+            text1.place(x=20,y=5)
+            text2 = Label(hesapmakinesi,height=8,width=21,font=("Arial",30),bg="#1d2227")
+            text2.place(x=20,y=180)
+
+            
+
+            hesapmakinesi.mainloop()
+    def sekmeac2():
+          ana.destroy()
+          sayfa1 = Tk()
+          sayfa1.title("Hava Durumu")
+          sayfa1.geometry("1200x600")
+          sayfa1.resizable(False,False)
+          sayfa1.configure(bg="#410f15")
+
+          def gerigit1():
+               sayfa1.destroy()
+               sekmezero()
+
+          bas2 = Button(sayfa1,text="Geri git",padx= 20 , pady=5 ,bg="#310b0f", command=gerigit1,font=("Arial",20))
+          bas2.place(x=1050,y=5)
+          
+
+          
+
+
+    buton1 = Button(ana,
+                text="Hesap makinesi",
+                font=("Arial",12),
+                padx=80,
+                pady=20,
+                command=sekmeac1,
+                bg="darkgrey").place(x=20,y=20)
+    butona = Button(ana,
+                text="Hava Durumu",
+                font=("Arial",12),
+                padx=80,
+                pady=20,
+                command=sekmeac2,
+                bg="darkgrey").place(x=20,y=120)
+    butonb = Button(ana,
+                text="boş",
+                font=("Arial",12),
+                padx=80,
+                pady=20,
+                #command=sekmeac1,
+                bg="darkgrey").place(x=20,y=220)
+    butonc = Button(ana,
+                text="boş ",
+                font=("Arial",12),
+                padx=80,
+                pady=20,
+                #command=sekmeac1,
+                bg="darkgrey").place(x=20,y=320)
+    butond = Button(ana,
+                text="boş",
+                font=("Arial",12),
+                padx=80,
+                pady=20,
+                #command=sekmeac1,
+                bg="darkgrey").place(x=20,y=420)
+
+
+    ana.mainloop()
+
+sekmezero()
